@@ -29,6 +29,24 @@ plugins {
 }
 ```
 
+While the Gradle Plugin Portal release is waiting for approval, the plugin can
+also be resolved from JitPack:
+
+```kotlin
+// settings.gradle.kts
+pluginManagement {
+    repositories {
+        maven("https://jitpack.io")
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id("io.github.DancingSnow0517.gtnh-catalog.settings") version "1.0.1"
+}
+```
+
 ```kotlin
 // build.gradle.kts
 dependencies {
