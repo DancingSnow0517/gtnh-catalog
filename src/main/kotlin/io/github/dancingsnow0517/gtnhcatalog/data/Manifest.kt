@@ -8,8 +8,8 @@ data class Manifest(
     val version: String,
     @SerialName("last_version")
     val lastVersion: String,
-    @SerialName("last_update")
-    val lastUpdate: String,
+    @SerialName("last_updated")
+    val lastUpdated: String,
     val config: String,
     @SerialName("github_mods")
     val githubMods: Map<String, Mod>,

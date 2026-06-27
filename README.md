@@ -18,7 +18,7 @@ pluginManagement {
 }
 
 plugins {
-    id("io.github.DancingSnow0517.gtnh-catalog.settings") version "1.0.0"
+    id("io.github.DancingSnow0517.gtnh-catalog.settings") version "1.0.1"
 }
 
 `gtnh-catalog` {

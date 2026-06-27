@@ -71,11 +71,11 @@ class GTNHCatalogSettingsPlugin : Plugin<Settings> {
 
     private fun catalogAlias(artifactId: String): String {
         return artifactId
-            .split('-', '.', '_')
+            .split(NON_ALIAS_CHARACTERS)
             .filter { it.isNotEmpty() }
             .mapIndexed { index, part ->
                 if (index == 0) {
-                    part
+                    part.replaceFirstChar { char -> char.lowercase(Locale.ROOT) }
                 } else {
                     part.replaceFirstChar { char ->
                         if (char.isLowerCase()) char.titlecase(Locale.ROOT) else char.toString()
@@ -87,6 +87,7 @@ class GTNHCatalogSettingsPlugin : Plugin<Settings> {
 
     private companion object {
         val NON_CACHEABLE_MANIFESTS = setOf("daily", "nightly", "experimental")
+        val NON_ALIAS_CHARACTERS = Regex("[^A-Za-z0-9]+")
 
         val json = Json {
             ignoreUnknownKeys = true
