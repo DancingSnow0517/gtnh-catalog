@@ -1,0 +1,18 @@
+{
+  "version": "test",
+  "last_version": "test",
+  "last_update": "2026-06-27",
+  "config": "test",
+  "github_mods": {
+    "ae2-stuff": {
+      "version": "1.0.0",
+      "side": "BOTH"
+    }
+  },
+  "external_mods": {
+    "external-only-mod": {
+      "version": "2.0.0",
+      "side": "CLIENT"
+    }
+  }
+}
