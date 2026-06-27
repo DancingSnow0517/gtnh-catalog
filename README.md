@@ -72,6 +72,9 @@ Manifests are cached under:
 When `useCache` is `true` and a matching cached file exists, the plugin reads
 the local file. Otherwise, it downloads the manifest and writes it to the cache.
 
+`daily`, `nightly`, and `experimental` are floating manifest versions. They
+always bypass the cache and are not written back to the cache.
+
 ## Development
 
 Compile the plugin:

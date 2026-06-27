@@ -45,13 +45,16 @@ class GTNHCatalogSettingsPlugin : Plugin<Settings> {
     private fun loadManifest(settings: Settings, version: GTNHVersion): Manifest {
         val manifestVersion = version.version.get()
         val cacheFile = manifestCacheFile(settings, manifestVersion)
+        val canUseCache = version.useCache.get() && manifestVersion !in NON_CACHEABLE_MANIFESTS
 
-        val manifestJson = if (version.useCache.get() && cacheFile.isFile) {
+        val manifestJson = if (canUseCache && cacheFile.isFile) {
             cacheFile.readText()
         } else {
             ManifestUtils.downloadManifest(manifestVersion).also { downloaded ->
-                cacheFile.parentFile.mkdirs()
-                cacheFile.writeText(downloaded)
+                if (canUseCache) {
+                    cacheFile.parentFile.mkdirs()
+                    cacheFile.writeText(downloaded)
+                }
             }
         }
 
@@ -83,6 +86,8 @@ class GTNHCatalogSettingsPlugin : Plugin<Settings> {
     }
 
     private companion object {
+        val NON_CACHEABLE_MANIFESTS = setOf("daily", "nightly", "experimental")
+
         val json = Json {
             ignoreUnknownKeys = true
         }
